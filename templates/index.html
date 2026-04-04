@@ -1,14 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student Feedback</title>
+    <title>Student Feedback System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin: 20px auto;
+        }
+
+        input, textarea {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            margin: 10px auto;
+            padding: 10px;
+            width: 400px;
+            border-radius: 5px;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
 </head>
+
 <body>
-    <h2>Submit Feedback</h2>
+
+    <h2>Student Feedback Form</h2>
+
     <form method="POST">
-        <input type="text" name="name" placeholder="Your Name" required><br><br>
-        <textarea name="message" placeholder="Your Feedback" required></textarea><br><br>
+        <input type="text" name="name" placeholder="Enter your name" required><br>
+        <textarea name="message" placeholder="Enter your feedback" required></textarea><br>
         <button type="submit">Submit</button>
     </form>
+
+    <!-- Success Message -->
+    {% if msg %}
+        <p class="success">{{ msg }}</p>
+    {% endif %}
+
+    <!-- Feedback List -->
+    {% if feedbacks %}
+        <h3>Submitted Feedback</h3>
+        <ul>
+            {% for f in feedbacks %}
+                <li><b>{{ f[0] }}</b>: {{ f[1] }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
 </body>
 </html>
